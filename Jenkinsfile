@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Git Checkout'){
             steps{
-                  git branch: 'master' url: 'https://github.com/PreethiMCA/health-care-project.git'
+                  git branch: 'master' , url: 'https://github.com/PreethiMCA/health-care-project.git'
                   echo 'github url checkout'
             }
         }
