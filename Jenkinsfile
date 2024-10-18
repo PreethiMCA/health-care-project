@@ -6,8 +6,8 @@ pipeline{
     stages{
         stage('Git Checkout'){
             steps{
-                 git branch: 'master' url: 'https://github.com/PreethiMCA/health-care-project.git'
-                 echo 'github url checkout'
+                  git branch: 'master' url: 'https://github.com/PreethiMCA/health-care-project.git'
+                  echo 'github url checkout'
             }
         }
         stage('compile the code'){
@@ -32,5 +32,5 @@ pipeline{
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'var/lib/jenkins/workspace/HealthCare/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }          
-    }
+   }
 }
