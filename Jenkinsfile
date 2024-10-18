@@ -25,6 +25,12 @@ pipeline{
             steps{
                 sh 'mvn package'
             }
-        }               
+        }   
+        stage ('Generate test report'){
+            steps{
+                echo 'Generating test reports using HTML Publisher'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/HealthCare/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            }
+        }  
    }
 }
