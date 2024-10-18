@@ -16,12 +16,12 @@ pipeline{
                 sh 'mvn compile'
             }
         }
-        stage('codetesting with akshat'){
+        stage('codetesting'){
             steps{
                 sh 'mvn test'
             }
         }
-        stage('package with akshat'){
+        stage('package the code'){
             steps{
                 sh 'mvn package'
             }
@@ -35,7 +35,7 @@ pipeline{
         stage('Create docker image') {
           steps   {
                 echo 'creating docker image'
-                sh 'docker build -t preethiadmin/healthcare:1.0 '
+                sh 'docker build -t preethiadmin/healthcare:1.0 . '
           }
         }
         stage('Dockerhub login') {
