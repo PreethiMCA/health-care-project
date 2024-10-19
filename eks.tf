@@ -25,3 +25,4 @@ module "eks" {
       resolve_conflicts_on_update  = "OVERWRITE"
     }
   }
+}
