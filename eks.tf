@@ -25,7 +25,7 @@ module "eks" {
       resolve_conflicts_on_update  = "OVERWRITE"
     }
   }
-}
+
  vpc_id                   = module.vpc.vpc_id
   subnet_ids               = module.vpc.public_subnets
   control_plane_subnet_ids = module.vpc.intra_subnets
