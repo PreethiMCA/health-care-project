@@ -1,23 +1,27 @@
 module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "test-cluster"
-  cluster_version = "1.23"
-  subnets         = module.vpc.private_subnets
-  vpc_id          = module.vpc.vpc_id
+  source  = "terraform-aws-modules/eks/aws"
+  version = "19.15.1"
 
-  node_groups = {
-    eks_nodes = {
-      desired_capacity = 3
-      max_capacity     = 5
-      min_capacity     = 1
+  cluster_name                   = local.name
+  cluster_endpoint_public_access = true
 
-      instance_type = "t3.medium"
-
-      key_name = "NVirginiaKey"  # Replace this with your EC2 keypair for SSH access
+  cluster_addons = {
+    coredns = {
+      most_recent = true
+      # Set resolve conflicts attributes
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update  = "OVERWRITE"
+    }
+    kube-proxy = {
+      most_recent = true
+      # Set resolve conflicts attributes
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update  = "OVERWRITE"
+    }
+    vpc-cni = {
+      most_recent = true
+      # Set resolve conflicts attributes
+      resolve_conflicts_on_create = "OVERWRITE"
+      resolve_conflicts_on_update  = "OVERWRITE"
     }
   }
-
-  tags = {
-    "Environment" = "test"
-  }
-}
