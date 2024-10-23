@@ -79,6 +79,8 @@ pipeline{
       steps {
         sh 'aws eks update-kubeconfig --region us-east-1 --name test-cluster'
         sh 'kubectl get nodes'
+        sh 'kubectl get configmap aws-auth -n kube-system -o yaml'
+
       }
     }
     stage('Deploying the application') {
@@ -113,6 +115,7 @@ pipeline{
       steps {
         sh 'aws eks update-kubeconfig --region us-east-1 --name prod-cluster'
         sh 'kubectl get nodes'
+        sh 'kubectl get configmap -n kube-system aws-auth -o yaml'
       }
     }
     stage('Deploying the application to production') {
